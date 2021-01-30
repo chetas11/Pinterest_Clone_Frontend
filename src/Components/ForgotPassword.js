@@ -35,7 +35,7 @@ export default function ForgotPassword() {
                 <div className="col-lg-4 col-md-4 col-sm-6">
                 <PinterestIcon fontSize="medium" />
                 <h2>Let's find your Pinterest account</h2>
-                <h6 className="mb-4">What’s your email?</h6>
+                <h6 className="mb-4">What’s your email  ?</h6>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
                         <TextField fullWidth id="outlined-basic" label="Email" variant="outlined" />
