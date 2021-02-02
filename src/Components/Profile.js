@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import PinterestIcon from '@material-ui/icons/Pinterest';
@@ -10,9 +10,31 @@ import 'regenerator-runtime/runtime'
 
 export default function Profile() {
     const history = useHistory();
+    const [user, setUser] = useState({firstname:"",lastname:"",age:"",email:""})
+    let currentPath = window.location.pathname
+    
+
     function handleChange(){
         history.push("/");
     }
+
+    useEffect(
+    function getData() {
+    try {
+        Axios.get(`https://damp-ocean-44105.herokuapp.com${currentPath}`)
+        .then((res)=> setUser({
+            email:res.data[0].email,
+            firstname:res.data[0].firstname,
+            lastname:res.data[0].lastname,
+            age:res.data[0].age,
+        }))
+        
+    } catch (error) {
+        console.error(error);
+    }
+    },[])
+
+    
 
     return (
         <>
@@ -20,13 +42,13 @@ export default function Profile() {
                 <div className="col-lg-4 col-md-4 col-sm-6"></div>
                 <div className="col-lg-4 col-md-4 col-sm-6">
                 <PinterestIcon fontSize="large" />
-                <h1 className="mb-4"><u>CHETAN BIRMOLE</u></h1>
+                <h1 className="mb-4"><u>{user.firstname} {user.lastname}</u></h1>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
-                            <label className="form-control">Username</label>
-                            <label className="form-control">First Name</label>
-                            <label className="form-control">Last Name</label>
-                            <label className="form-control">Age</label>
+                            <label className="form-control">Username: {user.email}</label>
+                            <label className="form-control">First Name: {user.firstname}</label>
+                            <label className="form-control">Last Name: {user.lastname}</label>
+                            <label className="form-control">Age: {user.age}</label>
                         </Grid>
                         <Grid item>
                         <Button onClick={handleChange}  fullWidth variant="contained" color="secondary">

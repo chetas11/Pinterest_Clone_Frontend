@@ -22,7 +22,7 @@ export default function App() {
             <Route exact path="/about" >
                   <Login />
             </Route>
-            <Route exact path="/home" >
+            <Route path="/home/" >
                   <UserHome />
             </Route>
             <Route exact path="/">

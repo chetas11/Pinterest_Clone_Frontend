@@ -49,7 +49,7 @@ export default function Login() {
                 age:""
               })
             }else{
-              history.push("/home");
+              history.push(`/home/${user.email}`);
             }
           });
         }
