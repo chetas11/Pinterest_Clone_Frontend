@@ -6,6 +6,9 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Axios from 'axios'
+import Navbar from './Navbar'
+import 'regenerator-runtime/runtime'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,23 +35,46 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Signup() {
     const classes = useStyles()
-    const [user, setUser] = useState({email:"",password:"",age:""})
+    const [user, setUser] = useState({firstname:"",lastname:"",email:"",password:"",age:""})
+    const addNewURL = "https://damp-ocean-44105.herokuapp.com/addNew"
 
-    const addNewURL = "https://jsonplaceholder.typicode.com/todos"
-
-    function createUser(){
-      Axios.post(addNewURL, {
-        data: {
-          email:user.email,
-          password:user.password,
-          age:user.age
+    const createUser = async () => {
+      try{
+          await Axios.post(addNewURL, user)
+          .then((response) => {
+            if((response.data)==="Failure"){
+              alert("user already present")
+              setUser({
+                email: "",
+                password:"",  
+                age:"",
+                firstname:"",
+                lastname:""
+              })
+            }else{
+              alert("user added")
+              setUser({
+                email: "",
+                password:"",  
+                age:"",
+                firstname:"",
+                lastname:""
+              })
+            }
+          })
+        }catch (e) {
+          alert("Error occured, User already present")
+           setUser({
+                email: "",
+                password:"",  
+                age:"",
+                firstname:"",
+                lastname:""
+              })
         }
-        }).then((response) => {
-          console.log(response);
-        }, (error) => {
-          console.log(error);
-        });
-    }
+          
+          
+  }
 
     function onEmailChange(e){
       setUser({
@@ -71,8 +97,24 @@ export default function Signup() {
       })
     }
 
+    function onFirstNameChange(e){
+      setUser({
+        ...user,
+        firstname:e.target.value
+      })
+    }
+
+    function onLastNameChange(e){
+      setUser({
+        ...user,
+        lastname:e.target.value
+      })
+    }
+
     return (
-            <div className="row text-center mt-5">
+      <>
+      <Navbar />
+            <div className="row text-center mt-3">
                 <div className="col-lg-4 col-md-4 col-sm-6"></div>
                 <div className="col-lg-4 col-md-4 col-sm-6">
                 <PinterestIcon fontSize="large" />
@@ -80,13 +122,19 @@ export default function Signup() {
                 <h6 className="mb-4">Find new ideas to try</h6>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
-                        <TextField value={user.email} onChange={onEmailChange} fullWidth id="outlined-email" label="Email" variant="outlined" />
+                        <TextField required value={user.firstname} onChange={onFirstNameChange} fullWidth id="outlined-email" label="First Name" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField value={user.password} onChange={onPasswordChange}  fullWidth type="password" id="outlined-pass" label="Password" variant="outlined" />
+                        <TextField required value={user.lastname} onChange={onLastNameChange} fullWidth id="outlined-email" label="Last Name" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField value={user.age} onChange={onAgeChange} fullWidth type="number" id="outlined-age" label="Age" variant="outlined" />
+                        <TextField required value={user.email} onChange={onEmailChange} fullWidth id="outlined-email" type="email"  label="Email" variant="outlined" />
+                        </Grid>
+                        <Grid item>
+                        <TextField required value={user.password} onChange={onPasswordChange}  fullWidth type="password" id="outlined-pass" label="Password" variant="outlined" />
+                        </Grid>
+                        <Grid item>
+                        <TextField required value={user.age} onChange={onAgeChange} fullWidth type="number" id="outlined-age" label="Age" variant="outlined" />
                         </Grid>
                         <Grid item>
                         <Button onClick={createUser} fullWidth variant="contained" color="primary">
@@ -99,5 +147,6 @@ export default function Signup() {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-6"></div>  
             </div>
+        </>
     )
 }

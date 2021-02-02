@@ -6,9 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Login from './Login'
-import Signup from './Signup'
-import ForgotPassword from './ForgotPassword'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,12 +20,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Home() {
+export default function Navbar() {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
-      <Router>
       <AppBar color="transparent" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
@@ -39,19 +36,7 @@ export default function Home() {
           <Link to="/signup"><Button>Signup</Button></Link>
           <Link to="/about"><Button>About</Button></Link>
         </Toolbar>
-      </AppBar>
-      <Switch>
-          <Route exact path="/">
-                  <Login />
-            </Route>
-            <Route path="/signup">
-                <Signup />
-            </Route>
-            <Route path="/forgot">
-                <ForgotPassword />
-            </Route>
-          </Switch> 
-      </Router>
+      </AppBar> 
     </div>
   );
 }

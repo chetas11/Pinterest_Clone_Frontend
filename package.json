@@ -7,6 +7,13 @@
     "start": "parcel index.html",
     "build": "parcel build index.html"
   },
+  "browserslist": [
+  "last 3 and_chr versions",
+  "last 3 chrome versions",
+  "last 3 opera versions",
+  "last 3 ios_saf versions",
+  "last 3 safari versions"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -19,5 +26,12 @@
     "react-dom": "^16.14.0",
     "react-loader-spinner": "^3.1.14",
     "react-router-dom": "^5.2.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.2.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1"
   }
 }
