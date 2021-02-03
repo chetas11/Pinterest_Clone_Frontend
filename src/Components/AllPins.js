@@ -35,17 +35,23 @@ useEffect(
   } catch (error) {
     console.error(error);
   }
-},[])
+},[data])
 
     return (
             <>
-            <GridList cellHeight={160} className={classes.gridList} cols={3}>
-                {data.map((tile) => (
-                <GridListTile key={tile.img} cols={tile.cols || 1}>
-                    <img src={tile.img} alt={tile.title} />
-                </GridListTile>
-                ))}
-            </GridList>
+            <div className="row text-center mt-2">
+            {data.map((item, tabIndex) => (
+            <div className="col-lg-4 col-md-4 col-sm-6">
+                <div className="card" >
+                <img src={item.img} height="250px" className="card-img-top" alt="..."></img>
+                <div className="card-body">
+                    <h4 className="card-title">{item.title}</h4>
+                    <h6 className="card-title">{item.author}</h6>
+                </div>
+            </div>
+            </div>
+            ))}
+            </div>
         </>
     )
 }
