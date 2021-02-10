@@ -7,6 +7,9 @@ import Grid from '@material-ui/core/Grid';
 import { BrowserRouter as Router, Switch, Route, Link, useHistory  } from "react-router-dom";
 import Axios from 'axios'
 import Navbar from './Navbar'
+import useLoader from '../hooks/useLoader';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -36,36 +39,28 @@ export default function Login() {
     const [user, setUser] = useState({email:"",password:""})
     const addNewURL = "https://damp-ocean-44105.herokuapp.com/login"
     const history = useHistory();
+    const [loader, showLoader, hideLoader] = useLoader()
+
+    function notify() {
+      toast.error('User not found, signup now', { position: toast.POSITION.TOP_CENTER, autoClose:4000 })
+    }
 
     const LoggedIn = async () => {
+      showLoader()
         try {
           await Axios.post(addNewURL, user)
           .then((response) => {
+            hideLoader()
             if((response.data)==="Failed"){
-              alert("wrong username/password")
-              setUser({
-                email: "",
-                password:"",  
-                age:""
-              })
+              notify()
             }else{
               history.push(`/home/${user.email}`);
             }
           });
         }
        catch (e) {
-          alert("Error occured, User already present")
-           setUser({
-                email: "",
-                password:"",  
-                age:""
-              })
+          notify()
         }
-        
-        setUser({
-          email: "",
-          password:"",  
-        })
   }
 
    function onPasswordChange(e){
@@ -109,6 +104,7 @@ export default function Login() {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-6"></div>
             </div>
+            {loader}
             </>
     )
 }

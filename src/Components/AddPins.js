@@ -42,7 +42,7 @@ export default function AddPins() {
     const [pins, setPins] = useState({img:"",title:"",author:CurrentUser})
     const URL = "https://damp-ocean-44105.herokuapp.com/addPin" 
     const [data, setData] = useState([])
-
+    
   
 
     useEffect(
@@ -66,7 +66,6 @@ export default function AddPins() {
                 title:"",  
               })
             }else{
-              alert("pin added")
               setPins({
                 img: "",
                 title:"",  
@@ -135,9 +134,8 @@ export default function AddPins() {
                 </div>
             </div>
             </div>
-             ))}
+            ))}
             </div>
-            
         </>
     )
 }

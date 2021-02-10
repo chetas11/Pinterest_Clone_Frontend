@@ -4,10 +4,13 @@ import TextField from '@material-ui/core/TextField';
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 import Axios from 'axios'
 import Navbar from './Navbar'
 import 'regenerator-runtime/runtime'
+import useLoader from '../hooks/useLoader';
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,20 +34,32 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
+toast.configure()
 
 export default function Signup() {
     const classes = useStyles()
     const [user, setUser] = useState({firstname:"",lastname:"",email:"",password:"",age:""})
     const addNewURL = "https://damp-ocean-44105.herokuapp.com/addNew"
+    const [loader, showLoader, hideLoader] = useLoader()
+    const history = useHistory();
+    function notify() {
+      toast.error('User already present!', { position: toast.POSITION.TOP_CENTER, autoClose:4000 })
+    }
+
+    function confirmationLink() {
+      toast.success('Please check you mail for the confirmation link to activate your account.'
+      , { position: toast.POSITION.TOP_CENTER, autoClose:4000 })
+    }
 
     const createUser = async () => {
+      showLoader()
       try{
           await Axios.post(addNewURL, user)
           .then((response) => {
+            hideLoader()
             if((response.data)==="Failure"){
-              alert("user already present")
-              setUser({
+                notify() 
+                setUser({
                 email: "",
                 password:"",  
                 age:"",
@@ -52,7 +67,7 @@ export default function Signup() {
                 lastname:""
               })
             }else{
-              alert("user added")
+              confirmationLink()
               setUser({
                 email: "",
                 password:"",  
@@ -147,6 +162,7 @@ export default function Signup() {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-6"></div>  
             </div>
+            {loader}
         </>
     )
 }

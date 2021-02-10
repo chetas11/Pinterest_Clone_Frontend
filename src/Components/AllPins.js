@@ -1,7 +1,5 @@
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import GridList from '@material-ui/core/GridList';
-import GridListTile from '@material-ui/core/GridListTile';
 import Axios from 'axios'
 
 const useStyles = makeStyles((theme) => ({
@@ -24,7 +22,7 @@ export default function AllPins() {
     const classes = useStyles();
     const URL = "https://damp-ocean-44105.herokuapp.com/home" 
     const [data, setData] = useState([])
-
+  
   
 
 useEffect(

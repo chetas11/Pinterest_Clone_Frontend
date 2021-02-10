@@ -8,11 +8,11 @@
     "build": "parcel build index.html"
   },
   "browserslist": [
-  "last 3 and_chr versions",
-  "last 3 chrome versions",
-  "last 3 opera versions",
-  "last 3 ios_saf versions",
-  "last 3 safari versions"
+    "last 3 and_chr versions",
+    "last 3 chrome versions",
+    "last 3 opera versions",
+    "last 3 ios_saf versions",
+    "last 3 safari versions"
   ],
   "author": "",
   "license": "ISC",
@@ -25,7 +25,8 @@
     "react": "^16.14.0",
     "react-dom": "^16.14.0",
     "react-loader-spinner": "^3.1.14",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "react-toastify": "^7.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
