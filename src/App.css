@@ -2,11 +2,11 @@
     background-color: bisque;
 } */
 
-.logo{
-  color: red;   
+.logo {
+  color: red;
 }
 
-.fp-container{
+.fp-container {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -15,9 +15,35 @@
   background: #f8f8f8ad;
 }
 
-.fp-container .fp-loader{
-  top: 30%;
-  left: 48%;
+.fp-container .fp-loader {
+  top: 35%;
+  left: 44%;
   z-index: 1000;
   position: absolute;
+}
+
+.width {
+  width: 90%;
+}
+
+.about {
+  background-image: url("./images/about.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  background-size: cover;
+}
+
+.about-margin {
+  margin-left: 200px;
+}
+
+.about h1,h3{
+  color:white;
+}
+
+@media only screen and (max-width: 350px) {
+  .hide {
+    display: none;
+  }
 }

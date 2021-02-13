@@ -87,18 +87,18 @@ export default function Login() {
                 <h1 className="mb-4">Welcome to Pinterest</h1>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
-                        <TextField onChange={onEmailChange} type="email" required fullWidth id="outlined-basic" label="Email" variant="outlined" />
+                        <TextField className="width" onChange={onEmailChange} type="email" required id="outlined-basic" label="Email" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField onChange={onPasswordChange} required fullWidth type="password" id="outlined-basic" type="password" label="Password" variant="outlined" />
+                        <TextField className="width" onChange={onPasswordChange} required type="password" id="outlined-basic" type="password" label="Password" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <Button onClick={LoggedIn} fullWidth variant="contained" color="primary">
+                        <Button className="width" onClick={LoggedIn} variant="contained" color="primary">
                             Login
                         </Button>
                         </Grid>
                         <Link to="/forgot">Forgot your password?</Link>
-                        <h6 className="m-0">By continuing, you agree to Pinterest's Terms of Service, Privacy policy.</h6>
+                        <p className="my-0 mx-2">By continuing, you agree to Pinterest's Terms of Service, Privacy policy.</p>
                         <Link to="/signup">Not on Pinterest yet? Sign up</Link>
                     </Grid> 
                 </div>

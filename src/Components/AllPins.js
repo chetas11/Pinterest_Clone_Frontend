@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios'
+import useLoader from '../hooks/useLoader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,18 +23,20 @@ export default function AllPins() {
     const classes = useStyles();
     const URL = "https://damp-ocean-44105.herokuapp.com/home" 
     const [data, setData] = useState([])
+    const [loader, showLoader, hideLoader] = useLoader()
   
-  
-
-useEffect(
-  function getData() {
+useEffect(() => {
+  showLoader()
   try {
     Axios.get(URL)
-    .then((res)=> setData(res.data))
+    .then((res)=> {setData(res.data)
+    hideLoader()
+    })
   } catch (error) {
     console.error(error);
   }
-},[data])
+},[])
+
 
     return (
             <>
@@ -50,6 +53,7 @@ useEffect(
             </div>
             ))}
             </div>
+            {loader}
         </>
     )
 }

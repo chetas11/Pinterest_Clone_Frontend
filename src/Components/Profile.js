@@ -21,8 +21,7 @@ export default function Profile() {
         history.push("/");
     }
 
-    useEffect(
-    function getData() {
+    useEffect(() => {
         showLoader()
     try {
         Axios.get(`https://damp-ocean-44105.herokuapp.com${currentPath}`)

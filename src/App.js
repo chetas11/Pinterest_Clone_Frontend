@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 import Login from './Components/Login'
 import Signup from './Components/Signup'
 import ForgotPassword from './Components/ForgotPassword'
+import About from './Components/About'
 import './App.css'
 import UserHome from "./Components/UserHome";
 
@@ -20,7 +21,7 @@ export default function App() {
                 <ForgotPassword />
             </Route>
             <Route exact path="/about" >
-                  <Login />
+                  <About />
             </Route>
             <Route path="/home/" >
                   <UserHome />

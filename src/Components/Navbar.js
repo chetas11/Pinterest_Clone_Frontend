@@ -28,7 +28,7 @@ export default function Navbar() {
       <AppBar color="transparent" position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            <PinterestIcon className="logo" /> <span>Pinterest</span>
+            <PinterestIcon className="logo" /> <span className="hide">Pinterest</span>
           </Typography>
           <Link to="/">
             <Button>login</Button>

@@ -137,27 +137,27 @@ export default function Signup() {
                 <h6 className="mb-4">Find new ideas to try</h6>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
-                        <TextField required value={user.firstname} onChange={onFirstNameChange} fullWidth id="outlined-email" label="First Name" variant="outlined" />
+                        <TextField className="width" required value={user.firstname} onChange={onFirstNameChange}  id="outlined-email" label="First Name" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField required value={user.lastname} onChange={onLastNameChange} fullWidth id="outlined-email" label="Last Name" variant="outlined" />
+                        <TextField className="width" required value={user.lastname} onChange={onLastNameChange}  id="outlined-email" label="Last Name" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField required value={user.email} onChange={onEmailChange} fullWidth id="outlined-email" type="email"  label="Email" variant="outlined" />
+                        <TextField required value={user.email} onChange={onEmailChange} className="width" id="outlined-email" type="email"  label="Email" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField required value={user.password} onChange={onPasswordChange}  fullWidth type="password" id="outlined-pass" label="Password" variant="outlined" />
+                        <TextField required value={user.password} onChange={onPasswordChange}  className="width" type="password" id="outlined-pass" label="Password" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField required value={user.age} onChange={onAgeChange} fullWidth type="number" id="outlined-age" label="Age" variant="outlined" />
+                        <TextField required value={user.age} onChange={onAgeChange} className="width" type="number" id="outlined-age" label="Age" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <Button onClick={createUser} fullWidth variant="contained" color="primary">
+                        <Button className="width" onClick={createUser}  variant="contained" color="primary">
                             Sign Up
                         </Button>
-                        </Grid>
-                        <small>By continuing, you agree to Pinterest's Terms of Service, Privacy policy.</small>
+                        <h6 className="mx-2 my-1">By continuing, you agree to Pinterest's Terms of Service, Privacy policy.</h6>
                         <Link to="/">Already a member? Log in</Link>
+                        </Grid>
                     </Grid> 
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-6"></div>  

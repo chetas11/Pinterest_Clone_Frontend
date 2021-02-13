@@ -6,8 +6,8 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Axios from 'axios'
 import 'regenerator-runtime/runtime'
-import Fab from '@material-ui/core/Fab';
-import DeleteIcon from '@material-ui/icons/Delete';
+import MyPins from './MyPins'
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -41,19 +41,8 @@ export default function AddPins() {
     const CurrentUser = window.location.pathname.slice(6)
     const [pins, setPins] = useState({img:"",title:"",author:CurrentUser})
     const URL = "https://damp-ocean-44105.herokuapp.com/addPin" 
-    const [data, setData] = useState([])
+   
     
-  
-
-    useEffect(
-      function getData() {
-      try {
-        Axios.put(`https://damp-ocean-44105.herokuapp.com/home/${CurrentUser}`)
-        .then((res)=> setData(res.data))
-      } catch (error) {
-        console.error(error);
-      }
-    },[data])
 
     const createPins = async () =>{
       try{
@@ -70,6 +59,7 @@ export default function AddPins() {
                 img: "",
                 title:"",  
               })
+              getData()
             }
           })
         }catch (e) {
@@ -96,6 +86,10 @@ export default function AddPins() {
       })
     }
 
+    const deleteItem = (id) =>{
+    console.log(id)
+  }
+
     return (
         <>
           <div className="row text-center mt-2">
@@ -120,22 +114,9 @@ export default function AddPins() {
                 </div>
                 <div className="col-lg-4 col-md-4 col-sm-6"></div> 
             </div>  
-            <hr /> 
-          <div className="row text-center mt-2">
-            {data.map((item, tabIndex) => (
-            <div className="col-lg-4 col-md-4 col-sm-6">
-                <div className="card" >
-                <img src={item.img} height="300px" className="card-img-top" alt="..."></img>
-                <div className="card-body">
-                    <h4 className="card-title">{item.title}</h4>
-                    <Fab key ={tabIndex}  size="small" color="secondary" aria-label="add" className={classes.margin}>
-                      <DeleteIcon />
-                    </Fab>
-                </div>
-            </div>
-            </div>
-            ))}
-            </div>
+            <hr />
+            <MyPins deleteItem={deleteItem}/>
         </>
+        
     )
 }
