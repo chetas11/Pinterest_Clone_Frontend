@@ -3,7 +3,6 @@ import Navbar from './Navbar'
 import { BrowserRouter as Router, Switch, Route, Link, useHistory } from "react-router-dom";
 import PinterestIcon from '@material-ui/icons/Pinterest';
 import { makeStyles } from '@material-ui/core/styles';
-import PinterestIcon from '@material-ui/icons/Pinterest';
 import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
@@ -36,9 +35,9 @@ export default function About() {
         <div className="about row">
             <div className ="about-margin col-lg-4 col-md-4 col-sm-6">
                 <h3 className="mt-5">WELCOME TO VISUAL DISCOVERY </h3> 
-                <h1>When it comes to a great idea, you know it when you see it </h1>
+                <h1 className="mb-5">When it comes to a great idea, you know it when you see it </h1>
                 <Link to="/">
-                    <Button fullWidth variant="contained" color="secondary">
+                    <Button variant="contained" color="secondary">
                             Join Pinterest <PinterestIcon />
                     </Button>
                 </Link>
