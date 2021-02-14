@@ -77,6 +77,8 @@ export default function ForgotPassword() {
     })
   }
 
+  
+
     return (
       <>
         <Navbar />
