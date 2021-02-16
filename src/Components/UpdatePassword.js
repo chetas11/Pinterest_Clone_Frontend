@@ -98,10 +98,10 @@ export default function UpdatePassword() {
                     <h4 className="mb-3">Update your new password</h4>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
-                        <TextField className="width" required value={user.password} onChange={onPasswordChange}  id="outlined-pass" label="Password" variant="outlined" />
+                        <TextField type="password" className="width" required value={user.password} onChange={onPasswordChange}  id="outlined-pass" label="Password" variant="outlined" />
                         </Grid>
                         <Grid item>
-                        <TextField className="width" required value={user.confirmpassword} onChange={onConfirmPasswordChange}  id="outlined-Cpass" label="Confirm Password" variant="outlined" />
+                        <TextField type="password" className="width" required value={user.confirmpassword} onChange={onConfirmPasswordChange}  id="outlined-Cpass" label="Confirm Password" variant="outlined" />
                         </Grid>
                         <Grid item>
                         <Button onClick={updatePass} className="width" variant="contained" color="primary">

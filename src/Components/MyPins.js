@@ -35,6 +35,7 @@ export default function MyPins(props) {
     const [data, setData] = useState([])
     const CurrentUser = window.location.pathname.slice(6)
     const [loader, showLoader, hideLoader] = useLoader()
+
     
 
     useEffect(() =>{
@@ -50,21 +51,44 @@ export default function MyPins(props) {
       }
     }, []) 
 
+    function deleteItem(id){
+      const newData = data.filter((item) => item._id !== id)
+      const Filtered = data.filter((item) => item._id === id)
+      setData(newData)
+
+      try{
+      Axios.post("https://damp-ocean-44105.herokuapp.com/delete",Filtered[0])
+      .then((res) => {
+        if(res == "Failed"){
+          alert("Error Occured.. Try Again!")
+        }
+      })
+      }
+      catch(e){
+        console.log(e)
+      }
+    }
+
     return (
             <div className="row text-center mt-2">
                 { data.map((item)=> {
+                  const onDeleteClick = ()=>{
+                    deleteItem(item._id)
+                  }
+                   return(
                 <div className="col-lg-4 col-md-4 col-sm-6">
                     <div className="card" >
                     <img src={item.img} height="300px" className="card-img-top" alt="..."></img>
                         <div className="card-body">
                         <h4 className="card-title">{item.title}</h4>
                         <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
-                        <DeleteIcon />
+                        <DeleteIcon onClick={onDeleteClick}/>
                         </Fab>
                     </div>
                     </div>
                 </div>
-              })}
+                   )
+                })}
                 {loader}
             </div>
     )
