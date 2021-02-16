@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react'
-import Fab from '@material-ui/core/Fab';
 import DeleteIcon from '@material-ui/icons/Delete';
 import Axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
-import useLoader from '../hooks/useLoader';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,26 +29,23 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyPins(props) {
+export default function MyPins() {
     const classes = useStyles()
     const [data, setData] = useState([])
     const CurrentUser = window.location.pathname.slice(6)
-    const [loader, showLoader, hideLoader] = useLoader()
 
     
 
     useEffect(() =>{
-      showLoader()
       try {
         Axios.put(`https://damp-ocean-44105.herokuapp.com/home/${CurrentUser}`)
         .then((res)=> {
           setData(res.data)
-          hideLoader()
       })
       } catch (error) {
         console.error(error);
       }
-    }, []) 
+    }, [data]) 
 
     function deleteItem(id){
       const newData = data.filter((item) => item._id !== id)
@@ -59,7 +55,7 @@ export default function MyPins(props) {
       try{
       Axios.post("https://damp-ocean-44105.herokuapp.com/delete",Filtered[0])
       .then((res) => {
-        if(res == "Failed"){
+        if(res === "Failed"){
           alert("Error Occured.. Try Again!")
         }
       })
@@ -70,7 +66,7 @@ export default function MyPins(props) {
     }
 
     return (
-            <div className="row text-center mt-2">
+            <div className="row mt-2">
                 { data.map((item)=> {
                   const onDeleteClick = ()=>{
                     deleteItem(item._id)
@@ -80,16 +76,22 @@ export default function MyPins(props) {
                     <div className="card" >
                     <img src={item.img} height="300px" className="card-img-top" alt="..."></img>
                         <div className="card-body">
-                        <h4 className="card-title">{item.title}</h4>
-                        <Fab size="small" color="secondary" aria-label="add" className={classes.margin}>
-                        <DeleteIcon onClick={onDeleteClick}/>
-                        </Fab>
+                        <h4 className="card-title text-center">{item.title}</h4>
+                        <Button
+                          variant="contained"
+                          color="secondary"
+                          className={classes.button}
+                          startIcon={<DeleteIcon />}
+                          onClick={onDeleteClick}
+                        >
+                          Delete
+                        </Button>
+                        <a className="link" href={item.img}>Click here to view</a>
                     </div>
                     </div>
                 </div>
                    )
                 })}
-                {loader}
             </div>
     )
 }

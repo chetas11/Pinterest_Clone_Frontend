@@ -79,9 +79,9 @@ export default function NavTabs() {
           onChange={handleChange}
           aria-label="nav tabs example"
         >
-          <LinkTab label="All Pins" href="/drafts" {...a11yProps(0)} />
-          <LinkTab label="My Pins" href="/trash" {...a11yProps(1)} />
-          <LinkTab label="Profile" href="/spam" {...a11yProps(2)} />
+          <LinkTab className="tabLinks" label="All Pins" href="/drafts" {...a11yProps(0)} />
+          <LinkTab className="tabLinks" label="My Pins" href="/trash" {...a11yProps(1)} />
+          <LinkTab className="tabLinks" label="Profile" href="/spam" {...a11yProps(2)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>

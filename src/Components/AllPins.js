@@ -44,7 +44,7 @@ useEffect(() => {
             {data.map((item, tabIndex) => (
             <div className="col-lg-4 col-md-4 col-sm-6">
                 <div className="card" >
-                <img src={item.img} height="250px" className="card-img-top" alt="..."></img>
+                <img src={item.img} height="300px" className="card-img-top" alt="..."></img>
                 <div className="card-body">
                     <h4 className="card-title">{item.title}</h4>
                     <h6 className="card-title">{item.author}</h6>

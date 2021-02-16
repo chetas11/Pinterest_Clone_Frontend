@@ -7,6 +7,8 @@ import Grid from '@material-ui/core/Grid';
 import Axios from 'axios'
 import 'regenerator-runtime/runtime'
 import MyPins from './MyPins'
+import {toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -34,42 +36,43 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
+toast.configure()
 
 export default function AddPins() {
     const classes = useStyles()
     const CurrentUser = window.location.pathname.slice(6)
     const [pins, setPins] = useState({img:"",title:"",author:CurrentUser})
     const URL = "https://damp-ocean-44105.herokuapp.com/addPin" 
+
+    function Success() {
+      toast.success('Added Successfully!', { position: toast.POSITION.TOP_CENTER, autoClose:4000 })
+    }
+
+    function Failed() {
+      toast.error('Error occurred try again please'
+      , { position: toast.POSITION.TOP_CENTER, autoClose:4000 })
+    }
+
    
     
 
     const createPins = async () =>{
-      try{
           await Axios.post(URL, pins)
           .then((response) => {
             if((response.data)==="Failure"){
-              alert("Author not found")
+              Failed()
               setPins({
                 img: "",
                 title:"",  
               })
             }else{
+              Success()
               setPins({
                 img: "",
                 title:"",  
               })
-              getData()
             }
           })
-        }catch (e) {
-          alert("Error occured, User already present")
-           setPins({
-                img: "",
-                title:"",  
-              })
-        }
-          
     }
 
     function onTitleChange(e){
@@ -96,7 +99,7 @@ export default function AddPins() {
                 <div className="col-lg-4 col-md-4 col-sm-6"></div>
                 <div className="col-lg-4 col-md-4 col-sm-6">
                 <PinterestIcon fontSize="large" />
-                <h1>Add your Pins</h1>
+                <h1>Add New Pins</h1>
                 <h6 className="mb-4">Find new ideas to try</h6>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
@@ -115,7 +118,7 @@ export default function AddPins() {
                 <div className="col-lg-4 col-md-4 col-sm-6"></div> 
             </div>  
             <hr />
-            <MyPins deleteItem={deleteItem}/>
+            <MyPins/>
         </>
         
     )

@@ -43,11 +43,10 @@ export default function Profile() {
 
     return (
         <>
-          <div className="row text-center mt-5">
-                <div className="col-lg-4 col-md-4 col-sm-6"></div>
+          <div id="profile" className="row text-center">
+                <div className="col-lg-4 col-md-4 col-sm-6 "></div>
                 <div className="col-lg-4 col-md-4 col-sm-6">
-                <PinterestIcon fontSize="large" />
-                <h1 className="mb-4"><u>{user.firstname} {user.lastname}</u></h1>
+                <h1 className="m-4"><u>{user.firstname} {user.lastname}</u></h1>
                     <Grid container direction={"column"} spacing={3} justify="space-between">
                         <Grid item>
                             <label className="form-control">Username: {user.email}</label>
