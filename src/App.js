@@ -8,6 +8,7 @@ import About from './Components/About'
 import './App.css'
 import UserHome from "./Components/UserHome";
 import UpdatePassword from './Components/UpdatePassword'
+import Expired from './Components/Expired'
  
 
 
@@ -24,6 +25,9 @@ export default function App() {
             </Route>
             <Route path="/about" >
                   <About />
+            </Route>
+            <Route path="/expired" >
+                  <Expired />
             </Route>
             <Route path="/update">
                   <UpdatePassword />
