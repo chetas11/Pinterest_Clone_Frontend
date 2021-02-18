@@ -3,6 +3,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import Axios from 'axios'
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import useLoader from '../hooks/useLoader';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +34,7 @@ export default function MyPins() {
     const classes = useStyles()
     const [data, setData] = useState([])
     const CurrentUser = window.location.pathname.slice(6)
-
+    const [loader, showLoader, hideLoader] = useLoader()
     
 
     useEffect(() =>{
@@ -48,13 +49,13 @@ export default function MyPins() {
     }, [data]) 
 
     function deleteItem(id){
-      const newData = data.filter((item) => item._id !== id)
       const Filtered = data.filter((item) => item._id === id)
-      setData(newData)
 
       try{
+        showLoader()
       Axios.post("https://damp-ocean-44105.herokuapp.com/delete",Filtered[0])
       .then((res) => {
+        hideLoader()
         if(res === "Failed"){
           alert("Error Occured.. Try Again!")
         }
@@ -92,6 +93,7 @@ export default function MyPins() {
                 </div>
                    )
                 })}
+                {loader}
             </div>
     )
 }

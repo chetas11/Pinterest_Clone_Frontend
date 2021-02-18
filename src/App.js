@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import React from 'react'
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import React, {useEffect} from 'react'
 import ReactDOM from 'react-dom'
 import Login from './Components/Login'
 import Signup from './Components/Signup'
@@ -9,10 +9,17 @@ import './App.css'
 import UserHome from "./Components/UserHome";
 import UpdatePassword from './Components/UpdatePassword'
 import Expired from './Components/Expired'
- 
 
 
 export default function App() {
+
+    let User = false
+
+    useEffect(() => {
+        User = localStorage.getItem('LoggedIn') === "true"
+    }, [localStorage])
+
+
     return (
         <>
         <Router>
@@ -32,8 +39,9 @@ export default function App() {
             <Route path="/update">
                   <UpdatePassword />
             </Route>
-            <Route path="/home/" >
-                  <UserHome />
+            <Route path="/home/" >{
+                User ? <UserHome />  : <Redirect exact to ="/" />
+            }
             </Route>
             <Route exact path="/">
                   <Login />

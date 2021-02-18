@@ -61,13 +61,16 @@ export default function AddPins() {
           .then((response) => {
             if((response.data)==="Failure"){
               Failed()
-              setPins({
+              setPins(
+                {
+                ...pins,
                 img: "",
                 title:"",  
               })
             }else{
               Success()
               setPins({
+                ...pins,
                 img: "",
                 title:"",  
               })
@@ -89,9 +92,6 @@ export default function AddPins() {
       })
     }
 
-    const deleteItem = (id) =>{
-    console.log(id)
-  }
 
     return (
         <>

@@ -3,12 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios'
 import useLoader from '../hooks/useLoader';
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
-    '& > *': {
-      margin: theme.spacing(1),
-    },
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    overflow: 'hidden',
+    backgroundColor: theme.palette.background.paper,
   },
   small: {
     width: theme.spacing(3),
@@ -19,6 +21,9 @@ const useStyles = makeStyles((theme) => ({
     height: theme.spacing(7),
   },
 }));
+
+
+
 export default function AllPins() {
     const classes = useStyles();
     const URL = "https://damp-ocean-44105.herokuapp.com/home" 

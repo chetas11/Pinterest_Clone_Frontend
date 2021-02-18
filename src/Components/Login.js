@@ -55,6 +55,7 @@ export default function Login() {
               notify()
             }else{
               history.push(`/home/${user.email}`);
+              localStorage.setItem("LoggedIn", true)
             }
           });
         }

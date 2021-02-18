@@ -17,7 +17,8 @@ export default function Profile() {
 
     
 
-    function handleChange(){
+    function LogOut(){
+        localStorage.setItem('LoggedIn', false);
         history.push("/");
     }
 
@@ -55,7 +56,7 @@ export default function Profile() {
                             <label className="form-control">Age: {user.age}</label>
                         </Grid>
                         <Grid item>
-                        <Button onClick={handleChange}  fullWidth variant="contained" color="secondary">
+                        <Button onClick={LogOut}  fullWidth variant="contained" color="secondary">
                             Logout
                         </Button>
                         </Grid>
