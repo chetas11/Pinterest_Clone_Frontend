@@ -25,4 +25,4 @@
  
  #### Screenshot - 
 
-![Screenshot](https://github.com/chetas11/ToDoList/blob/master/Screenshot_2020-12-15%20TODOLIST.png)
+![Screenshot](https://github.com/chetas11/Pinterest_Clone_Frontend/blob/master/src/images/Pinterest.png)
