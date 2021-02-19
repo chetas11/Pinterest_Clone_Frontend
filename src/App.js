@@ -39,9 +39,8 @@ export default function App() {
             <Route path="/update">
                   <UpdatePassword />
             </Route>
-            <Route path="/home/" >{
-                User ? <UserHome />  : <Redirect exact to ="/" />
-            }
+            <Route path="/home/" >
+                <UserHome />
             </Route>
             <Route exact path="/">
                   <Login />
