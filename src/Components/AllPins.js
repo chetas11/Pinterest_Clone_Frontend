@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Axios from 'axios'
 import useLoader from '../hooks/useLoader';
+import InputField from "./Searchbar"
 
 
 const useStyles = makeStyles((theme) => ({
@@ -29,12 +30,15 @@ export default function AllPins() {
     const URL = "https://damp-ocean-44105.herokuapp.com/home" 
     const [data, setData] = useState([])
     const [loader, showLoader, hideLoader] = useLoader()
+    const [searchText, setSearchText] = useState("");
   
 useEffect(() => {
   showLoader()
   try {
     Axios.get(URL)
-    .then((res)=> {setData(res.data)
+    .then((res)=> {
+    
+    setData(res.data)
     hideLoader()
     })
   } catch (error) {
@@ -42,11 +46,22 @@ useEffect(() => {
   }
 },[])
 
+const onInputChnage = (e) =>{
+    setSearchText(e.target.value)
+}
+
 
     return (
             <>
-            <div className="row text-center mt-2">
-            {data.map((item, tabIndex) => (
+            <InputField onInputChnage={onInputChnage} value={searchText}/>
+            <div className="row text-center mt-4">
+            {data.filter((item) => {
+              if(searchText===""){
+                return item
+              }else if(item.title.toLowerCase().includes(searchText.toLowerCase())){
+                return item
+              }
+            }).map((item, tabIndex) => (
             <div className="col-lg-4 col-md-4 col-sm-6">
                 <div className="card" >
                 <img src={item.img} height="300px" className="card-img-top" alt="..."></img>
